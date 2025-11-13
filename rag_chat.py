@@ -35,7 +35,7 @@ def has_question(text):
 
 def get_medicine_list():
     """Get list of all medicines from the JSON file."""
-    json_file = os.getenv("INPUT_JSON", "wockhardt_products.json")
+    json_file = os.getenv("INPUT_JSON", "new_data.json")
     try:
         with open(json_file, "r", encoding="utf-8") as f:
             products = json.load(f)
@@ -50,13 +50,15 @@ def get_greeting_message():
     """Generate the standard greeting message with medicine list."""
     medicine_list = get_medicine_list()
     medicine_list_str = ", ".join(medicine_list) if medicine_list else "No medicines available"
-    return f"Hello! How are you? I am a POC prototype bot and for the basic demo purpose I have the mock data for now as follows: {medicine_list_str}.\n\nYou may ask me any relevant stuffs."
+    source_url = "https://www.wockhardt.com/about-us/products/quality-generics/"
+    return f"Hello! How are you? I am a POC prototype bot and for the basic demo purpose I have the mock data from the source: {source_url}\n\nYou may ask me any relevant stuffs."
 
 def create_system_prompt(context_text, is_first_message=False):
     """Create the system prompt for the medical assistant."""
     medicine_list = get_medicine_list()
     medicine_list_str = ", ".join(medicine_list) if medicine_list else "No medicines available"
-    greeting_message = f"Hello! How are you? I am a POC prototype bot and for the basic demo purpose I have the mock data for now as follows: {medicine_list_str}.\n\nYou may ask me any relevant stuffs."
+    source_url = "https://www.wockhardt.com/about-us/products/quality-generics/"
+    greeting_message = f"Hello! How are you? I am a POC prototype bot and for the basic demo purpose I have the mock data for now as follows: {medicine_list_str}.\n\nWe have taken data from the source: {source_url}\n\nYou may ask me any relevant stuffs."
     
     return {
         "role": "system",

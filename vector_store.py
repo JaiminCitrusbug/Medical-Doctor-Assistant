@@ -13,10 +13,10 @@ EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
 
 # Pinecone setup
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME", "medical-vectors")
+PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME", "medical-vector-2")
 PINECONE_REGION = os.getenv("PINECONE_REGION", "us-east-1")
 
-INPUT_JSON = os.getenv("INPUT_JSON", "wockhardt_products.json")
+INPUT_JSON = os.getenv("INPUT_JSON", "new_data.json")
 
 def build_text_for_embedding(doc: dict) -> str:
     """
